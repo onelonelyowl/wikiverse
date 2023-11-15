@@ -1,11 +1,19 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  background-color: rgb(223, 223, 223);
+  background-color: whitesmoke;
   color: black;
 }
 
 main {
   padding: 1rem;
   height: 100vh;
+}
+
+.articleTitle {
+  background-color: red;
+}
+
+.articleTitle:hover {
+  background-color: aqua;
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PagesList } from "./PagesList";
 import { Article } from "./Article";
 import { NewPageForm } from "./NewPageForm";
+import './../../style.css'
 
 // import and prepend the api url to any fetch calls
 import apiURL from "../api";

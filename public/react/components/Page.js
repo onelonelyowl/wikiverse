@@ -12,7 +12,7 @@ export const Page = (props) => {
   }
   return (
     <>
-      <h3 onClick={singlePageHandler}>{props.page.title}</h3>
+      <h3 className="articleTitle" onClick={singlePageHandler}>{props.page.title}</h3>
     </>
   );
 };

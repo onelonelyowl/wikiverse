@@ -7,8 +7,7 @@ export const Page = (props) => {
     const response = await fetch(`${apiURL}/wiki/${props.page.slug}`);
     const data = await response.json();
     props.setSelectedPage(data);
-    props.toggleMainView(!props.mainView);
-    props.toggleSinglePageView(!props.singlePageView);
+    props.setView("singlePage")
   }
   return (
     <>

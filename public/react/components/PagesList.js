@@ -10,10 +10,8 @@ export const PagesList = (props) => {
             page={page}
             key={idx}
             setSelectedPage={props.setSelectedPage}
-            toggleSinglePageView={props.toggleSinglePageView}
-            toggleMainView={props.toggleMainView}
-            mainView={props.mainView}
-            singlePageView={props.singlePageView}
+            view={props.view}
+            setView={props.setView}
           />
         );
       })}

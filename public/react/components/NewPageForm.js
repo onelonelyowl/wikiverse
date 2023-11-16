@@ -26,8 +26,7 @@ export const NewPageForm = (props) => {
     });
     const createdPage = await response.json();
     props.fetchPages();
-    props.toggleNewPageForm(!props.newPageForm);
-    props.toggleMainView(!props.mainView);
+    props.setView("mainPage")
   }
   return (
     // need to add functionality to check if author exists before adding them to users, then just add them to the article instead of the new author

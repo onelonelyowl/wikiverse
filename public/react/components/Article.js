@@ -4,13 +4,11 @@ import apiURL from "../api";
 export const Article = (props) => {
   function toMainPage(e) {
     e.preventDefault();
-    props.toggleSinglePageView(!props.singlePageView);
-    props.toggleMainView(!props.mainView);
+    props.setView("mainPage")
   }
   function toNewPageForm(e) {
     e.preventDefault();
-    props.toggleSinglePageView(!props.singlePageView);
-    props.toggleNewPageForm(!props.newPageForm);
+    props.setView("newPageForm")
   }
   async function deleteThisPage(e) {
     e.preventDefault();
@@ -19,8 +17,7 @@ export const Article = (props) => {
       { method: "delete" }
     );
     props.fetchPages();
-    props.toggleSinglePageView(!props.singlePageView);
-    props.toggleMainView(!props.mainView);
+    props.setView("mainPage")
   }
   return (
     <>

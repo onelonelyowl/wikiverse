@@ -17,3 +17,21 @@ main {
 .articleTitle:hover {
   background-color: aqua;
 }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+}
+
+.dropdown-content p {
+  display: block;
+}
+
+.dropdown-content p:hover {
+  display: block;
+  background-color: bisque;
+}
+
+.dropdown:hover .dropdown-content {
+  display:block;
+}

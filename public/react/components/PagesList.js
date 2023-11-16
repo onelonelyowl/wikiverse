@@ -12,6 +12,7 @@ export const PagesList = (props) => {
             setSelectedPage={props.setSelectedPage}
             view={props.view}
             setView={props.setView}
+            className="pagesList"
           />
         );
       })}

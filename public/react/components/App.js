@@ -61,9 +61,9 @@ export const App = () => {
       <mainViewContext.Provider value={view}>
         <main>
           <h1>WikiVerse</h1>
-          <h2>An interesting 📚</h2>
+          <h2>📚 I AM A BEACON OF KNOWLEDGE BLAZING OUT OVER A BLACK SEA OF IGNORANCE 📚</h2>
           {view === "mainPage" ? (
-            <>
+          <div className="mainPage">
             <div className="dropdown">
               <button className="dropbtn">Authors</button>
               <div className="dropdown-content">
@@ -80,7 +80,7 @@ export const App = () => {
               view={view}
               setView={setView}
             />
-            </>
+          </div>
           ) : (
             <></>
           )}

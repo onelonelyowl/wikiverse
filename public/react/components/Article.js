@@ -4,13 +4,11 @@ import apiURL from "../api";
 export const Article = (props) => {
   function toMainPage(e) {
     e.preventDefault();
-    props.toggleSinglePageView(!props.singlePageView);
-    props.toggleMainView(!props.mainView);
+    props.setView("mainPage")
   }
   function toNewPageForm(e) {
     e.preventDefault();
-    props.toggleSinglePageView(!props.singlePageView);
-    props.toggleNewPageForm(!props.newPageForm);
+    props.setView("newPageForm")
   }
   async function deleteThisPage(e) {
     e.preventDefault();
@@ -19,19 +17,19 @@ export const Article = (props) => {
       { method: "delete" }
     );
     props.fetchPages();
-    props.toggleSinglePageView(!props.singlePageView);
-    props.toggleMainView(!props.mainView);
+    props.setView("mainPage")
   }
   return (
-    <>
+    <div className="article">
       <h1>{props.selectedPage.title}</h1>
-      <span>{props.selectedPage.author.name} • </span>
-      <span>{props.selectedPage.author.email}</span>
-      <p>{props.selectedPage.createdAt.toString().substring(0, 10)}</p>
-      <p>{props.selectedPage.content}</p>
-      <button onClick={toMainPage}>Return to main page</button>
-      <button onClick={toNewPageForm}>Add a new page</button>
-      <button onClick={deleteThisPage}>Delete this page</button>
-    </>
+      <h2>by {props.selectedPage.author.name} • {props.selectedPage.author.email}</h2>
+      <h3>Published on: {props.selectedPage.createdAt.toString().substring(0, 10)}</h3>
+      <p className="pageContent">{props.selectedPage.content}</p>
+      <div className="singlePageButtons">
+        <button className="articleButton" onClick={toMainPage}>Return to main page</button>
+        <button className="articleButton" onClick={toNewPageForm}>Add a new page</button>
+        <button className="articleButton" onClick={deleteThisPage}>Delete this page</button>
+      </div>
+    </div>
   );
 };

@@ -113,6 +113,7 @@ main h2 {
 }
 
 .newPageForm{
+  margin-top: 2%;
   margin-left: 2%;
   font-size: 2em;
   display:flex;

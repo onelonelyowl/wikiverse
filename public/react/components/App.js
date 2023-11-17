@@ -3,12 +3,14 @@ import { PagesList } from "./PagesList";
 import { Article } from "./Article";
 import { NewPageForm } from "./NewPageForm";
 import { SingleAuthorView } from "./SingleAuthorView";
+import { Dropdown } from "./Dropdown";
+import { UpdateArticle } from './UpdateArticle';
 import './../../style.css'
 
 // import and prepend the api url to any fetch calls
 import apiURL from "../api";
 import { createContext } from "react";
-const mainViewContext = createContext(null);
+const UsersContext = createContext(null);
 const PagesDataContext = createContext(null)
 
 export const App = () => {
@@ -45,36 +47,26 @@ export const App = () => {
       console.log("Oh no an error ", err)
     }
   }
-  function setAuthorHandler(e){
-    e.preventDefault()
-    const authorID = e.target.getAttribute("authorid")
-    const authorName = e.target.getAttribute("authorname")
-    setSelectedAuthor({id: authorID, name: authorName})
-    setView("singleAuthor")
-  }
   useEffect(() => {
     fetchPages()
     fetchAuthors();
-  }, []);
+  }, [view]);
 
   return (
     <PagesDataContext.Provider value={pages}>
-      <mainViewContext.Provider value={view}>
+      <UsersContext.Provider value={users}>
         <main>
           <h1>WikiVerse</h1>
           <h2>📚 I AM A BEACON OF KNOWLEDGE BLAZING OUT ACROSS A BLACK SEA OF IGNORANCE 📚</h2>
           {view === "mainPage" ? (
           <div className="mainPage">
-            <div className="dropdown">
-              <button className="dropbtn">Authors</button>
-              <div className="dropdown-content">
-                {users.map((author, idx) => {
-                  return (
-                      <p onClick={setAuthorHandler} authorid={author.id} authorname={author.name}>{author.name}</p>
-                  )
-                })}
-              </div>
-            </div>
+            <Dropdown 
+              pages={pages}
+              view={view}
+              setView={setView}
+              users={users}
+              setSelectedAuthor={setSelectedAuthor}
+            />
             <PagesList
               pages={pages}
               setSelectedPage={setSelectedPage}
@@ -87,6 +79,16 @@ export const App = () => {
           )}
           {view === "singlePage" ? (
             <Article
+              fetchPages={fetchPages}
+              selectedPage={selectedPage}
+              view={view}
+              setView={setView}
+            />
+          ) : (
+            <></>
+          )}
+          {view === "updatePage" ? (
+            <UpdateArticle
               fetchPages={fetchPages}
               selectedPage={selectedPage}
               view={view}
@@ -118,7 +120,7 @@ export const App = () => {
             <></>
           )}
         </main>
-      </mainViewContext.Provider>
+      </UsersContext.Provider>
     </PagesDataContext.Provider>
   );
 };

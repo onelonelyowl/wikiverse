@@ -3,15 +3,23 @@ import React, { useState, useEffect } from "react";
 import apiURL from "../api";
 // import fetchPages from './App'
 
-export const NewPageForm = (props) => {
+export const UpdateArticle = (props) => {
+  useEffect(() => {const foundAuthor = fetch(`${apiURL}/users/${props.selectedPage.authorId}`)
+  props.users
+  setAuthorName(foundAuthor.name)
+  setAuthorEmail(foundAuthor.email)}, [props.selectedPage])
+  const tagList = []
+  for(const tag of props.selectedPage.tags){
+    tagList.push(tag.name)
+  }
   const [authorName, setAuthorName] = useState("");
   const [authorEmail, setAuthorEmail] = useState("");
-  const [articleTitle, setArticleTitle] = useState("");
-  const [articleContent, setArticleContent] = useState("");
-  const [articleTags, setArticleTags] = useState("");
+  const [articleTitle, setArticleTitle] = useState(props.selectedPage.title);
+  const [articleContent, setArticleContent] = useState(props.selectedPage.content);
+  const [articleTags, setArticleTags] = useState(tagList.join(" "));
   async function handleSubmit(e) {
     e.preventDefault();
-    const dataToPost = {
+    const dataToPut = {
       name: authorName,
       email: authorEmail,
       title: articleTitle,
@@ -20,9 +28,9 @@ export const NewPageForm = (props) => {
       status: "closed",
       tags: articleTags
     };
-    const response = await fetch(`${apiURL}/wiki/`, {
-      method: "post",
-      body: JSON.stringify(dataToPost),
+    const response = await fetch(`${apiURL}/wiki/${dataToPut.slug}`, {
+      method: "put",
+      body: JSON.stringify(dataToPut),
       headers: { "Content-Type": "application/json" },
     });
     const createdPage = await response.json();

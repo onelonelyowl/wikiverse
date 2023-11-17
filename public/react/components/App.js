@@ -93,7 +93,7 @@ export const App = () => {
               selectedPage={selectedPage}
               view={view}
               setView={setView}
-              users={users}
+              // users={users}
             />
           ) : (
             <></>

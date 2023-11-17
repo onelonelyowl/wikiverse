@@ -23,6 +23,7 @@ export const App = () => {
       const response = await fetch(`${apiURL}/wiki`);
       const pagesData = await response.json();
       setPages(pagesData);
+      console.log(`pages set as: ${pages}`)
     } catch (err) {
       console.log("Oh no an error! ", err);
     }
@@ -61,7 +62,7 @@ export const App = () => {
       <mainViewContext.Provider value={view}>
         <main>
           <h1>WikiVerse</h1>
-          <h2>📚 I AM A BEACON OF KNOWLEDGE BLAZING OUT OVER A BLACK SEA OF IGNORANCE 📚</h2>
+          <h2>📚 I AM A BEACON OF KNOWLEDGE BLAZING OUT ACROSS A BLACK SEA OF IGNORANCE 📚</h2>
           {view === "mainPage" ? (
           <div className="mainPage">
             <div className="dropdown">

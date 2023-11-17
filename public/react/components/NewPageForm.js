@@ -28,65 +28,78 @@ export const NewPageForm = (props) => {
     props.fetchPages();
     props.setView("mainPage")
   }
+  function returnHome(e){
+    e.preventDefault()
+    props.setView("mainPage")
+  }
   return (
     // need to add functionality to check if author exists before adding them to users, then just add them to the article instead of the new author
-    <>
+    <div className="newPageForm">
       <form>
-        <p className="formSubheader">Author details</p>
+        <h3 className="formSubheader">Author details</h3>
+        <div className="formRow">
         <label className="formLabel">
           Name:
-          <input
+        </label>
+        <input
             type="text"
             placeholder="enter your name here"
             value={authorName}
             onChange={(e) => setAuthorName(e.target.value)}
-          />
-        </label>
-        <br />
+        />
+        </div>
+        <div className="formRow">
         <label className="formLabel">
           Email:
-          <input
+        </label>
+        <input
             type="email"
             placeholder="enter your email here"
             value={authorEmail}
             onChange={(e) => setAuthorEmail(e.target.value)}
-          />
-        </label>
-        <p className="formSubheader">Article details</p>
+        />
+        </div>
+        <h3 className="formSubheader">Article details</h3>
+        <div className="formRow">
         <label className="formLabel">
           Title:
-          <input
+        </label>
+        <input
             type="text"
             placeholder="enter your article title here"
             value={articleTitle}
             onChange={(e) => setArticleTitle(e.target.value)}
-          />
-        </label>
-        <br />
+        />
+        </div>
+        <div className="formRow">
         <label className="formLabel">
           Content:
-          <input
+        </label>
+        <input
             type="text"
             placeholder="enter your article content here"
             value={articleContent}
             onChange={(e) => setArticleContent(e.target.value)}
-          />
-        </label>
-        <br />
+        />
+        </div>
+        <div className="formRow">
         <label className="formLabel">
           Tags:
-          <input
+        </label>
+        <input
             type="text"
             placeholder="enter your tags here (single word, space seperated please)"
             value={articleTags}
             onChange={(e) => setArticleTags(e.target.value)}
-          />
-        </label>
-        <br />
+        />
+        </div>
+        <div className="buttons">
         <button onClick={handleSubmit} type="submit">
           Add page
         </button>
+        <button onClick={returnHome}>Return to main page</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };

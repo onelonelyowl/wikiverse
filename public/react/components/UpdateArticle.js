@@ -6,32 +6,34 @@ import apiURL from "../api";
 export const UpdateArticle = (props) => {
   // useEffect(() => {const foundAuthor = fetch(`${apiURL}/users/${props.selectedPage.authorId}`)
   console.log(`PROPS.USERS: ${props.users} TYPE: ${typeof props.users}`)
-//   let foundAuthor;
-//   for(const user of props.users){
-//     if(user.id === props.selectedPage.authorId){
-//         foundAuthor = user
-//     }
-//   }
+  let foundAuthor;
+  for(const user of props.users){
+    if(user.id === props.selectedPage.authorId){
+        foundAuthor = user
+    }
+  }
   const tagList = []
   for(const tag of props.selectedPage.tags){
     tagList.push(tag.name)
   }
-  const [authorName, setAuthorName] = useState("");
-  const [authorEmail, setAuthorEmail] = useState("");
+  
+  const [authorName, setAuthorName] = useState(foundAuthor.name);
+  const [authorEmail, setAuthorEmail] = useState(foundAuthor.email);
   const [articleTitle, setArticleTitle] = useState(props.selectedPage.title);
   const [articleContent, setArticleContent] = useState(props.selectedPage.content);
   const [articleTags, setArticleTags] = useState(tagList.join(" "));
   async function handleSubmit(e) {
     e.preventDefault();
     const dataToPut = {
-    //   name: authorName,
-    //   email: authorEmail,
+       name: authorName,
+       email: authorEmail,
       title: articleTitle,
       slug: articleTitle.replace(/\s/g, "_").replace(/\W/g, "").toLowerCase(),
-    //   content: articleContent,
-    //   status: "closed",
+       content: articleContent,
+       status: "closed",
       tags: articleTags
     };
+    
     console.log(JSON.stringify(dataToPut))
     const response = await fetch(`${apiURL}/wiki/${dataToPut.slug}`, {
       method: "put",
@@ -59,7 +61,7 @@ export const UpdateArticle = (props) => {
             type="text"
             placeholder="enter your name here"
             value={authorName}
-            onChange={(e) => setAuthorName(e.target.value)}
+    /* onChange={(e) => setAuthorName(e.target.value)}*/
         />
         </div>
         <div className="formRow">
@@ -70,7 +72,7 @@ export const UpdateArticle = (props) => {
             type="email"
             placeholder="enter your email here"
             value={authorEmail}
-            onChange={(e) => setAuthorEmail(e.target.value)}
+            /*onChange={(e) => setAuthorEmail(e.target.value)}*/
         />
         </div>
         <h3 className="formSubheader">Article details</h3>
@@ -82,7 +84,7 @@ export const UpdateArticle = (props) => {
             type="text"
             placeholder="enter your article title here"
             value={articleTitle}
-            onChange={(e) => setArticleTitle(e.target.value)}
+           /* onChange={(e) => setArticleTitle(e.target.value)}*/
         />
         </div>
         <div className="formRow">
@@ -109,7 +111,7 @@ export const UpdateArticle = (props) => {
         </div>
         <div className="buttons">
         <button onClick={handleSubmit} type="submit">
-          Add page
+          Update page
         </button>
         <button onClick={returnHome}>Return to main page</button>
         </div>

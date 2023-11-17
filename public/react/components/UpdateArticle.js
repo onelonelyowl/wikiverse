@@ -24,14 +24,15 @@ export const UpdateArticle = (props) => {
   async function handleSubmit(e) {
     e.preventDefault();
     const dataToPut = {
-      name: authorName,
-      email: authorEmail,
+    //   name: authorName,
+    //   email: authorEmail,
       title: articleTitle,
       slug: articleTitle.replace(/\s/g, "_").replace(/\W/g, "").toLowerCase(),
-      content: articleContent,
-      status: "closed",
+    //   content: articleContent,
+    //   status: "closed",
       tags: articleTags
     };
+    console.log(JSON.stringify(dataToPut))
     const response = await fetch(`${apiURL}/wiki/${dataToPut.slug}`, {
       method: "put",
       body: JSON.stringify(dataToPut),

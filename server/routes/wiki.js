@@ -77,6 +77,7 @@ router.put("/:slug", async (req, res, next) => {
       });
       return tag;
     }));
+    console.log(`tagArray: ${tagArray} tags: ${tags} updatedPages: ${updatedPages} typeof updatedPages: ${typeof updatedPages} updatedRowcount: ${updatedRowCount} updatedPages[0]: ${updatedPages[0]}`)
 
     await updatedPages[0].setTags(tags);
 
@@ -121,7 +122,7 @@ router.get("/:slug", async (req, res, next) => {
       ],
     });
     if (page === null) {
-      res.status(404).send(notFoundPage());
+      res.status(404).send("notFoundPage()");
     } else {
       res.send(page);
     }

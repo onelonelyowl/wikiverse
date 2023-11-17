@@ -4,16 +4,20 @@ import apiURL from "../api";
 // import fetchPages from './App'
 
 export const UpdateArticle = (props) => {
-  useEffect(() => {const foundAuthor = fetch(`${apiURL}/users/${props.selectedPage.authorId}`)
-  props.users
-  setAuthorName(foundAuthor.name)
-  setAuthorEmail(foundAuthor.email)}, [props.selectedPage])
+  // useEffect(() => {const foundAuthor = fetch(`${apiURL}/users/${props.selectedPage.authorId}`)
+  console.log(`PROPS.USERS: ${props.users} TYPE: ${typeof props.users}`)
+  let foundAuthor;
+  for(const user of props.users){
+    if(user.id === props.selectedPage.authorId){
+        foundAuthor = user
+    }
+  }
   const tagList = []
   for(const tag of props.selectedPage.tags){
     tagList.push(tag.name)
   }
-  const [authorName, setAuthorName] = useState("");
-  const [authorEmail, setAuthorEmail] = useState("");
+  const [authorName, setAuthorName] = useState(foundAuthor.name);
+  const [authorEmail, setAuthorEmail] = useState(foundAuthor.email);
   const [articleTitle, setArticleTitle] = useState(props.selectedPage.title);
   const [articleContent, setArticleContent] = useState(props.selectedPage.content);
   const [articleTags, setArticleTags] = useState(tagList.join(" "));

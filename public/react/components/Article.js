@@ -26,7 +26,7 @@ export const Article = (props) => {
   const tagList = []
   for(const tag of props.selectedPage.tags){
     tagList.push(tag.name)
-  }
+  } 
   return (
     <div className="article">
       <h1>{props.selectedPage.title}</h1>
